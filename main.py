@@ -1324,16 +1324,16 @@ elif (mode_selection == "2" and config["general"]["modes"]["enabled"]["realtime"
         time.sleep(0.2) # Sleep to give the user time to quit Predator if they want to.
         if (config["realtime"]["saving"]["images"] == True): # Check to see whether or not the user wants to save all images captured by Predator.
             if (config["general"]["alpr"]["engine"] == "phantom"): # Check to see if the configuration indicates that the Phantom ALPR engine should be used.
-                analysis_command = "alpr -n " + str(config["general"]["alpr"]["guesses"])  + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + str(frames_captured) + ".jpg'" # Prepare the analysis command so we can run it next.
+                analysis_command = "alpr -c  " + str(config["general"]["alpr"]["region"] + " -n " + str(config["general"]["alpr"]["guesses"])  + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + str(frames_captured) + ".jpg'" # Prepare the analysis command so we can run it next.
             elif (config["general"]["alpr"]["engine"] == "openalpr"): # Check to see if the configuration indicates that the OpenALPR engine should be used.
-                analysis_command = "alpr -j -n " + str(config["general"]["alpr"]["guesses"]) + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + str(frames_captured) + ".jpg'" # Prepare the analysis command so we can run it next.
+                analysis_command = "alpr -c " + str(config["general"]["alpr"]["region"] + " -j -n " + str(config["general"]["alpr"]["guesses"]) + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + str(frames_captured) + ".jpg'" # Prepare the analysis command so we can run it next.
             else:
                 display_message("The configured ALPR engine is not recognized.", 3)
         else:
             if (config["general"]["alpr"]["engine"] == "phantom"): # Check to see if the configuration indicates that the Phantom ALPR engine should be used.
-                analysis_command = "alpr -n " + str(config["general"]["alpr"]["guesses"]) + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + ".jpg'" # Prepare the analysis command so we can run it next.
+                analysis_command = "alpr -c " + str(config["general"]["alpr"]["region"] + " -n " + str(config["general"]["alpr"]["guesses"]) + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + ".jpg'" # Prepare the analysis command so we can run it next.
             elif (config["general"]["alpr"]["engine"] == "openalpr"): # Check to see if the configuration indicates that the OpenALPR engine should be used.
-                analysis_command = "alpr -j -n " + str(config["general"]["alpr"]["guesses"]) + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + ".jpg'" # Prepare the analysis command so we can run it next.
+                analysis_command = "alpr -c " + str(config["general"]["alpr"]["region"] + " -j -n " + str(config["general"]["alpr"]["guesses"]) + " '" + config["general"]["working_directory"] + "/" + config["realtime"]["image"]["camera"]["file_name"] + ".jpg'" # Prepare the analysis command so we can run it next.
             else:
                 display_message("The configured ALPR engine is not recognized.", 3)
 
